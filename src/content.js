@@ -1,5 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+// Version the photos so mobile browsers do not reuse an earlier cached 404
+// from the short window while GitHub Pages was still publishing the assets.
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260813-2`
 
 export const profile = {
   name: 'RIN',
