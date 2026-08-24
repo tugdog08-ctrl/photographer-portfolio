@@ -73,7 +73,7 @@ function App() {
         <div className="field-image"><img src={photo.src} alt={photo.alt}/><span>{photo.index}</span></div>
         <figcaption><span>FIELD NOTE / {photo.index}</span><span>AVAILABLE LIGHT + FLASH</span></figcaption>
       </figure>)}</div>
-      <div className="field-end"><span>END OF SERIES</span><span>05 FRAMES / ON LOCATION</span></div>
+      <div className="field-end"><span>END OF SERIES</span><span>06 FRAMES / ON LOCATION</span></div>
     </section>
 
     <section className="works selected-works"><div className="wrap">
