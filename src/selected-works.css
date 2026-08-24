@@ -8,6 +8,6 @@
 
 /* Six-photo outdoor series; keep every original ratio on phones. */
 .selected-works .project:nth-child(5){grid-column:1/7}.selected-works .project:nth-child(6){grid-column:7/13;margin-top:80px}.selected-works .project:nth-child(5) img,.selected-works .project:nth-child(6) img{aspect-ratio:4/3}
-.selected-works .project img,.selected-works .project:nth-child(n) img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.selected-works .project img,.selected-works .project:nth-child(n) img{width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:contain}
 @media(max-width:900px){.selected-works .project:nth-child(6){margin-top:0}}
-@media(max-width:560px){.selected-works .project img,.selected-works .project:nth-child(n) img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}}
+@media(max-width:560px){.selected-works .project img,.selected-works .project:nth-child(n) img{width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:contain}}
