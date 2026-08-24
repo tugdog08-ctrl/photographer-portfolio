@@ -1,7 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
 // Version the photos so mobile browsers do not reuse an earlier cached 404
 // from the short window while GitHub Pages was still publishing the assets.
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260813-2`
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260824-1`
 
 export const profile = {
   name: 'RIN',
@@ -30,11 +30,12 @@ export const projects = [
 ]
 
 export const fieldNotes = [
-  { src: asset('/media/field-notes/field-04.jpg'), alt: '展会现场蓝白服装角色全身照', index: '01', className: 'field-tall' },
-  { src: asset('/media/field-notes/field-03.jpg'), alt: '展会现场蓝金服装角色半身照', index: '02', className: 'field-wide' },
-  { src: asset('/media/field-notes/field-01.jpg'), alt: '展会现场持扇角色全身照', index: '03', className: 'field-portrait' },
-  { src: asset('/media/field-notes/field-02.jpg'), alt: '展会现场蓝绿色双马尾角色照', index: '04', className: 'field-landscape' },
-  { src: asset('/media/field-notes/field-05.jpg'), alt: '展会现场紫色服装角色照', index: '05', className: 'field-landscape field-last' },
+  { src: asset('/media/field-notes/field-01.jpg'), alt: '展会现场战术服装角色全身照', index: '01', className: 'field-tall' },
+  { src: asset('/media/field-notes/field-02.jpg'), alt: '展会现场黑白礼服角色半身照', index: '02', className: 'field-portrait' },
+  { src: asset('/media/field-notes/field-03.jpg'), alt: '展会现场白色服装角色横幅全身照', index: '03', className: 'field-wide' },
+  { src: asset('/media/field-notes/field-04.jpg'), alt: '展会现场蓝色服装角色横幅照', index: '04', className: 'field-landscape' },
+  { src: asset('/media/field-notes/field-05.jpg'), alt: '展会现场紫色服装角色横幅照', index: '05', className: 'field-landscape' },
+  { src: asset('/media/field-notes/field-06.jpg'), alt: '展会现场白色服装角色横幅照', index: '06', className: 'field-landscape field-last' },
 ]
 
 export const stats = [
