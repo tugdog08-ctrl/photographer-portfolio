@@ -13,3 +13,5 @@
 /* 进一步弱化文字，让作品照片成为唯一主体。 */
 .field-intro{grid-template-columns:.7fr 1.3fr;gap:6vw;padding:52px 0 68px}.field-intro h2{font-size:clamp(18px,1.7vw,28px);line-height:1.45;letter-spacing:-.02em}.field-intro h2 i{display:block;font-size:13px;font-weight:400;letter-spacing:0;color:#727678;margin-top:8px}.field-intro>div{justify-self:end;max-width:520px}.selected-works .project-shade{display:none}
 @media(max-width:560px){.field-intro{padding:38px 0 48px}.field-intro h2{font-size:20px}}
+
+@media(max-width:560px){.selected-works .project:nth-child(n) img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}}

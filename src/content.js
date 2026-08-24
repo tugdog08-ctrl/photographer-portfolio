@@ -1,7 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
 // Version the photos so mobile browsers do not reuse an earlier cached 404
 // from the short window while GitHub Pages was still publishing the assets.
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260824-1`
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260824-2`
 
 export const profile = {
   name: 'RIN',
@@ -22,11 +22,12 @@ export const about = {
 }
 
 export const projects = [
-  { no: '01', title: '外景人像', tag: '自然光 · 林间', year: '2026', image: asset('/media/selected/selected-01.jpg'), format: 'portrait' },
-  { no: '02', title: '园林人像', tag: '环境构成 · 日间', year: '2026', image: asset('/media/selected/selected-02.jpg'), format: 'landscape' },
-  { no: '03', title: '情绪光影', tag: '黄昏 · 道具光', year: '2026', image: asset('/media/selected/selected-03.jpg'), format: 'landscape' },
-  { no: '04', title: '角色人像', tag: '低机位 · 自然光', year: '2026', image: asset('/media/selected/selected-04.jpg'), format: 'landscape' },
-  { no: '05', title: '棚拍肖像', tag: '单灯 · 明暗关系', year: '2026', image: asset('/media/selected/selected-05.jpg'), format: 'portrait' },
+  { no: '01', title: '伞下肖像', tag: '阴天 · 留白构图', year: '2026', image: asset('/media/selected/selected-01.jpg'), format: 'landscape' },
+  { no: '02', title: '园林窗景', tag: '自然光 · 圆窗构成', year: '2026', image: asset('/media/selected/selected-02.jpg'), format: 'landscape' },
+  { no: '03', title: '暗调角色', tag: '侧光 · 影子叙事', year: '2026', image: asset('/media/selected/selected-03.jpg'), format: 'portrait' },
+  { no: '04', title: '街角花束', tag: '环境人像 · 日间', year: '2026', image: asset('/media/selected/selected-04.jpg'), format: 'landscape' },
+  { no: '05', title: '灯火微光', tag: '蓝调 · 道具光', year: '2026', image: asset('/media/selected/selected-05.jpg'), format: 'landscape' },
+  { no: '06', title: '园林门景', tag: '对称构图 · 雨后', year: '2026', image: asset('/media/selected/selected-06.jpg'), format: 'landscape' },
 ]
 
 export const fieldNotes = [
