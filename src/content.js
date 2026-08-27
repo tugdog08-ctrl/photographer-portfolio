@@ -30,6 +30,14 @@ export const projects = [
   { no: '06', title: '园林门景', tag: '对称构图 · 雨后', year: '2026', image: asset('/media/selected/selected-06.jpg'), format: 'landscape' },
 ]
 
+export const composites = [
+  { no: '01', title: '绯红剧场', image: asset('/media/composites/composite-01.jpg'), format: 'landscape' },
+  { no: '02', title: '蝶影战术', image: asset('/media/composites/composite-02.jpg'), format: 'portrait' },
+  { no: '03', title: '深蓝幻境', image: asset('/media/composites/composite-03.jpg'), format: 'landscape' },
+  { no: '04', title: '田园舞台', image: asset('/media/composites/composite-04.jpg'), format: 'portrait' },
+  { no: '05', title: '冰幕红影', image: asset('/media/composites/composite-05.jpg'), format: 'landscape' },
+]
+
 export const fieldNotes = [
   { src: asset('/media/field-notes/field-01.jpg'), alt: '展会现场战术服装角色全身照', index: '01', className: 'field-tall' },
   { src: asset('/media/field-notes/field-02.jpg'), alt: '展会现场黑白礼服角色半身照', index: '02', className: 'field-portrait' },

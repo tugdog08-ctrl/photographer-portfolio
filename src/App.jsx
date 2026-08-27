@@ -1,6 +1,6 @@
 import { ArrowDownRight, ArrowUpRight, Aperture, Focus, Layers3, Mail, Menu, Sparkles, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { about, fieldNotes, profile, projects, stats } from './content.js'
+import { about, composites, fieldNotes, profile, projects, stats } from './content.js'
 import { initMotion } from './motion.js'
 
 const capabilities = [
@@ -26,7 +26,7 @@ function App() {
     <header className={scrolled ? 'nav scrolled' : 'nav'}>
       <button className="brand" onClick={() => go('#home')}>RIN<span>©26</span></button>
       <nav className={menuOpen ? 'navlinks open' : 'navlinks'}>
-        <button onClick={() => go('#about')}>关于</button><button onClick={() => go('#works')}>作品</button><button onClick={() => go('#skills')}>能力</button>
+        <button onClick={() => go('#about')}>关于</button><button onClick={() => go('#works')}>作品</button><button onClick={() => go('#postproduction')}>后期</button><button onClick={() => go('#skills')}>能力</button>
       </nav>
       <button className="contact-pill" onClick={() => go('#contact')}>预约拍摄 <ArrowUpRight size={16}/></button>
       <button className="menu" aria-label="菜单" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X/> : <Menu/>}</button>
@@ -84,15 +84,27 @@ function App() {
       </article>)}</div>
     </div></section>
 
+    <section className="composite-works" id="postproduction"><div className="wrap">
+      <div className="composite-head">
+        <div className="section-tag light"><span>04</span> POST-PRODUCTION / 后期合成</div>
+        <h2>让现场延伸至<br/><i>想象之外。</i></h2>
+        <p>从实拍光影出发，通过场景重构、氛围塑造与视觉特效，完成角色世界观的第二次创作。</p>
+      </div>
+      <div className="composite-grid">{composites.map(item => <figure className={`composite-card ${item.format}`} key={item.no}>
+        <img src={item.image} alt={`后期合成作品：${item.title}`}/>
+        <figcaption><span>{item.no} / POST-PRODUCTION</span><strong>{item.title}</strong></figcaption>
+      </figure>)}</div>
+    </div></section>
+
     <section className="skills wrap" id="skills">
-      <div className="section-tag"><span>04</span> CAPABILITIES / 创作能力</div>
+      <div className="section-tag"><span>05</span> CAPABILITIES / 创作能力</div>
       <div className="skills-title"><h2>从灵感到成片，<br/>保持同一种<span>审美精度。</span></h2><p>IDEA → FRAME → FINAL</p></div>
       <div className="skill-grid">{capabilities.map(({icon:Icon,...c}) => <article key={c.no}><div><span>{c.no}</span><Icon size={28}/></div><h3>{c.title}</h3><small>{c.en}</small><p>{c.text}</p></article>)}</div>
     </section>
 
     <footer id="contact">
       <div className="contact-glow"/><div className="footer-inner wrap">
-        <div className="section-tag light"><span>05</span> START A PROJECT / 联系合作</div>
+        <div className="section-tag light"><span>06</span> START A PROJECT / 联系合作</div>
         <p className="available"><span className="dot"/> 2026 档期开放中</p>
         <h2>LET'S CREATE<br/><i>SOMETHING</i> REAL.</h2>
         <div className="footer-contacts">
