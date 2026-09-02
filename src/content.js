@@ -1,7 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
 // Version the photos so mobile browsers do not reuse an earlier cached 404
 // from the short window while GitHub Pages was still publishing the assets.
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260824-2`
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260902-1`
 
 export const profile = {
   name: 'RIN',
@@ -31,10 +31,10 @@ export const projects = [
 ]
 
 export const composites = [
-  { no: '01', title: '绯红剧场', image: asset('/media/composites/composite-01.jpg'), format: 'landscape' },
+  { no: '01', title: '深海异变', image: asset('/media/composites/composite-01.jpg'), format: 'landscape' },
   { no: '02', title: '蝶影战术', image: asset('/media/composites/composite-02.jpg'), format: 'portrait' },
   { no: '03', title: '深蓝幻境', image: asset('/media/composites/composite-03.jpg'), format: 'landscape' },
-  { no: '04', title: '田园舞台', image: asset('/media/composites/composite-04.jpg'), format: 'portrait' },
+  { no: '04', title: '危城红影', image: asset('/media/composites/composite-04.jpg'), format: 'landscape' },
   { no: '05', title: '冰幕红影', image: asset('/media/composites/composite-05.jpg'), format: 'landscape' },
 ]
 
