@@ -1,12 +1,24 @@
-import { ArrowDown, ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { about, composites, fieldNotes, profile, projects, stats } from './content.js'
 
-const navItems = [['#about', '关于'], ['#works', '作品'], ['#postproduction', '后期'], ['#contact', '联系']]
+const navItems = [['#archive', '档案'], ['#about', '关于'], ['#contact', '联系']]
+const chapters = [
+  { no: '01', eyebrow: 'FIELD NOTES', title: '场照纪实', target: '#field-notes', image: fieldNotes[2].src },
+  { no: '02', eyebrow: 'SELECTED', title: '精选外景', target: '#selected', image: projects[5].image },
+  { no: '03', eyebrow: 'COMPOSITES', title: '后期合成', target: '#postproduction', image: composites[2].image },
+  { no: '04', eyebrow: 'PROFILE', title: '关于摄影师', target: '#about', image: profile.portrait },
+]
+
+function ImageFrame({ src, alt, eager = false }) {
+  return <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const heroPhotos = [composites[3], composites[0], fieldNotes[2], projects[5]]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -15,10 +27,21 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', menuOpen)
+    const onKeyDown = (event) => event.key === 'Escape' && setMenuOpen(false)
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.classList.remove('menu-open')
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [menuOpen])
+
   const go = (target) => {
     document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
   }
+  const changeHero = (step) => setHeroIndex((heroIndex + step + heroPhotos.length) % heroPhotos.length)
 
   return <main>
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
@@ -31,57 +54,54 @@ function App() {
     </header>
 
     <section className="hero" id="home">
-      <img className="hero-image" src={composites[3].image} alt="后期合成作品：危城红影" loading="eager" fetchPriority="high" decoding="async"/>
-      <div className="hero-dim"/>
-      <div className="hero-meta"><span>COSPLAY PHOTOGRAPHER</span><span>SHANGHAI / 2026</span></div>
-      <div className="hero-title"><p>PHOTOGRAPHY &amp; POST-PRODUCTION</p><h1>RIN <i>/</i><br/>VISUAL</h1></div>
-      <button className="hero-scroll" onClick={() => go('#about')} aria-label="继续浏览">INDEX <ArrowDown size={14}/></button>
-    </section>
-
-    <section className="intro section-wrap" id="about">
-      <div className="chapter"><span>01</span><span>PROFILE / 关于</span></div>
-      <div className="intro-grid">
-        <h2>让角色从设定里走出来，<br/><em>在现实中留下证据。</em></h2>
-        <div className="intro-copy"><p className="handle">{about.handle}</p><p>{about.intro}</p><p>{about.service}</p></div>
+      <div className="hero-copy">
+        <p className="hero-kicker">PHOTOGRAPHS<br/>FOR A MORE MEANINGFUL<br/>TOMORROW</p>
+        <div><h1>VISUAL<br/>ARCHIVE <i>26</i></h1><p className="hero-cn">视觉档案</p></div>
+        <p className="hero-note">STILLS. ATMOSPHERES. NARRATIVES.<br/>A PERSONAL ARCHIVE OF FRAMES,<br/>PLACES AND EMOTIONS.</p>
+        <button className="text-link" onClick={() => go('#archive')}>ENTER ARCHIVE <ArrowDown size={14}/></button>
       </div>
-      <div className="profile-strip">
-        <figure><img src={profile.portrait} alt="摄影师与拍摄器材工作照" loading="lazy" decoding="async"/></figure>
-        <div className="profile-facts">{stats.map(([value, label]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>
+      <div className="hero-visual">
+        <ImageFrame src={heroPhotos[heroIndex].image || heroPhotos[heroIndex].src} alt="摄影作品主视觉" eager />
+        <div className="hero-visual-copy"><span>STILL<br/>BEYOND<br/>TIME</span></div>
+        <div className="hero-controls"><span>{String(heroIndex + 1).padStart(2, '0')} / {String(heroPhotos.length).padStart(2, '0')}</span><div className="hero-progress"><i style={{ width: `${(heroIndex + 1) / heroPhotos.length * 100}%` }}/></div><button onClick={() => changeHero(-1)} aria-label="上一张"><ArrowLeft size={16}/></button><button onClick={() => changeHero(1)} aria-label="下一张"><ArrowRight size={16}/></button></div>
       </div>
     </section>
 
-    <section className="field-notes section-wrap" id="works">
-      <div className="chapter"><span>02</span><span>FIELD NOTES / 场照纪实</span></div>
-      <div className="section-intro"><h2>现场不是背景，<br/>它是照片的一部分。</h2><p>在人群、展架与流动光线之间，快速捕捉角色进入现实的瞬间。</p></div>
-      <div className="field-grid">{fieldNotes.map(photo => <figure key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" decoding="async"/><figcaption><span>{photo.index} / ON LOCATION</span><span>AVAILABLE LIGHT + FLASH</span></figcaption></figure>)}</div>
+    <section className="archive-index" id="archive">
+      <div className="index-label"><span>ARCHIVE INDEX</span><i/></div>
+      <div className="chapter-rail">{chapters.map(chapter => <button className="chapter-card" key={chapter.no} onClick={() => go(chapter.target)}><span className="chapter-no">{chapter.no}</span><ImageFrame src={chapter.image} alt="" eager/><span className="chapter-name"><small>{chapter.eyebrow}</small>{chapter.title}</span><ArrowUpRight size={16}/></button>)}</div>
     </section>
 
-    <section className="selected section-wrap">
-      <div className="chapter"><span>03</span><span>SELECTED PHOTOGRAPHS / 精选外景</span></div>
-      <div className="selected-grid">{projects.map(project => <figure key={project.no}><img src={project.image} alt={project.title} loading="lazy" decoding="async"/><figcaption><span>{project.no}</span><strong>{project.title}</strong><small>{project.tag}</small></figcaption></figure>)}</div>
+    <section className="project section-wrap" id="field-notes">
+      <ProjectHeader no="01" title="场照纪实" labels={['FIELD NOTES','STILLS','NARRATIVES']} note="在人群、展架与流动光线之间，记录角色进入现实的瞬间。保留现场的空气，也保留被摄者真实的状态。" meta={['LOCATION / EXHIBITION','FORMAT / DIGITAL','YEAR / 2026']}/>
+      <div className="cinema-grid field-cinema">{fieldNotes.map(photo => <figure key={photo.src} className={photo.className}><ImageFrame src={photo.src} alt={photo.alt}/><figcaption><span>{photo.index}</span><span>ON LOCATION</span></figcaption></figure>)}</div>
     </section>
 
-    <section className="post section-wrap" id="postproduction">
-      <div className="chapter"><span>04</span><span>POST-PRODUCTION / 后期合成</span></div>
-      <div className="post-heading"><h2>从实拍出发，<br/>抵达想象之外。</h2><p>场景重构、氛围塑造与视觉特效。每一张合成都从原始光线与角色气质出发。</p></div>
-      <div className="post-grid">{composites.map(item => <figure className={item.format} key={item.no}><img src={item.image} alt={`后期合成作品：${item.title}`} loading="lazy" decoding="async"/><figcaption><span>{item.no} / POST-PRODUCTION</span><strong>{item.title}</strong></figcaption></figure>)}</div>
+    <section className="project section-wrap" id="selected">
+      <ProjectHeader no="02" title="精选外景" labels={['PORTRAITS','PLACES','NATURAL LIGHT']} note="让环境、光线与角色共享画面。每一处留白、门窗和风景，都是人物叙事的一部分。" meta={['LOCATION / OUTDOORS','FORMAT / DIGITAL','YEAR / 2026']}/>
+      <div className="cinema-grid selected-cinema">{projects.map(project => <figure key={project.no} className={project.format}><ImageFrame src={project.image} alt={project.title}/><figcaption><span>{project.no}</span><strong>{project.title}</strong><span>{project.tag}</span></figcaption></figure>)}</div>
     </section>
 
-    <section className="capabilities section-wrap" id="skills">
-      <div className="chapter"><span>05</span><span>CAPABILITIES / 创作能力</span></div>
-      <div className="capability-list"><p>角色理解 <span>Character study</span></p><p>光影构建 <span>Light design</span></p><p>现场拍摄 <span>On-location</span></p><p>后期合成 <span>Post-production</span></p></div>
+    <section className="project post-section section-wrap" id="postproduction">
+      <ProjectHeader no="03" title="后期合成" labels={['COMPOSITES','ATMOSPHERES','IMAGINED WORLDS']} note="从实拍出发，重构光线、空间与氛围。合成不是掩盖现场，而是把角色没有说完的故事继续讲下去。" meta={['PROCESS / COMPOSITE','FORMAT / DIGITAL','YEAR / 2026']}/>
+      <div className="cinema-grid post-cinema">{composites.map(item => <figure key={item.no} className={item.format}><ImageFrame src={item.image} alt={`后期合成作品：${item.title}`}/><figcaption><span>{item.no}</span><strong>{item.title}</strong><span>POST-PRODUCTION</span></figcaption></figure>)}</div>
+    </section>
+
+    <section className="about section-wrap" id="about">
+      <ProjectHeader no="04" title="关于摄影师" labels={['PROFILE','SHANGHAI','AVAILABLE WORLDWIDE']} note={about.intro}/>
+      <div className="about-layout"><figure><ImageFrame src={profile.portrait} alt="摄影师与拍摄器材工作照"/></figure><div className="about-copy"><p className="handle">{about.handle}</p><h3>{about.headline}</h3><p>{about.service}</p><div className="stats">{stats.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div></div></div>
     </section>
 
     <footer id="contact" className="section-wrap">
-      <div className="chapter"><span>06</span><span>CONTACT / 联系合作</span></div>
-      <div className="footer-title"><p>2026 档期开放中</p><h2>LET'S MAKE<br/>THE IMAGE <em>REAL.</em></h2></div>
-      <div className="contact-lines">
-        <div><span>WECHAT</span><strong>{profile.wechat}</strong></div>
-        <a href={`mailto:${profile.email}`}><span>EMAIL</span><strong>{profile.email}</strong><ArrowUpRight/></a>
-      </div>
-      <div className="footer-bottom"><span>© 2026 RIN / VISUAL</span><span>SHANGHAI, CHINA</span><button onClick={() => go('#home')}>BACK TO TOP ↑</button></div>
+      <div className="footer-top"><span>05 / CONTACT</span><span>2026 档期开放中</span></div><h2>MAKE THE<br/>IMAGE <em>REAL.</em></h2>
+      <div className="contact-lines"><div><span>WECHAT</span><strong>{profile.wechat}</strong></div><a href={`mailto:${profile.email}`}><span>EMAIL</span><strong>{profile.email}</strong><ArrowUpRight/></a></div>
+      <div className="footer-bottom"><span>© 2026 RIN / VISUAL</span><span>SHANGHAI, CHINA</span><button onClick={() => go('#home')}>BACK TO TOP <ArrowUpRight size={13}/></button></div>
     </footer>
   </main>
+}
+
+function ProjectHeader({ no, title, labels, note, meta = [] }) {
+  return <header className="project-header"><div><strong>{no}</strong><h2>{title}</h2><span className="short-rule"/></div><p>{labels.map(label => <span key={label}>{label}<br/></span>)}</p><div className="project-note"><span>PROJECT NOTE</span><p>{note}</p>{meta.length > 0 && <small>{meta.map(item => <span key={item}>{item}<br/></span>)}</small>}</div></header>
 }
 
 export default App
