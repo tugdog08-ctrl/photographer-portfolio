@@ -1,7 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
 // Version the photos so mobile browsers do not reuse an earlier cached 404
 // from the short window while GitHub Pages was still publishing the assets.
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260916-1`
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260930-1`
 
 export const profile = {
   name: 'RIN',
@@ -28,15 +28,22 @@ export const projects = [
   { no: '04', title: '街角花束', tag: '环境人像 · 日间', year: '2026', image: asset('/media/selected/selected-04.jpg'), format: 'landscape' },
   { no: '05', title: '灯火微光', tag: '蓝调 · 道具光', year: '2026', image: asset('/media/selected/selected-05.jpg'), format: 'landscape' },
   { no: '06', title: '园林门景', tag: '对称构图 · 雨后', year: '2026', image: asset('/media/selected/selected-06.jpg'), format: 'landscape' },
+  { no: '07', title: '\u9508\u8272\u8fb9\u754c', tag: 'INDUSTRIAL / PORTRAIT', year: '2026', image: asset('/media/selected/selected-07.jpg'), format: 'landscape' },
+  { no: '08', title: '\u6674\u5149\u9636\u68af', tag: 'DAYLIGHT / URBAN', year: '2026', image: asset('/media/selected/selected-08.jpg'), format: 'landscape' },
+  { no: '09', title: '\u6797\u95f4\u653e\u8bfe', tag: 'GREEN / PORTRAIT', year: '2026', image: asset('/media/selected/selected-09.jpg'), format: 'portrait' },
+  { no: '10', title: '\u7a97\u56ed\u6625\u8272', tag: 'GARDEN / PORTRAIT', year: '2026', image: asset('/media/selected/selected-10.jpg'), format: 'landscape' },
 ]
 
 export const composites = [
   { no: '01', title: '深海异变', image: asset('/media/composites/composite-01.jpg'), format: 'landscape' },
-  { no: '02', title: '沙海神殿', image: asset('/media/composites/composite-02.jpg'), format: 'landscape' },
+  { no: '02', title: '\u82b1\u6d77\u5723\u4eea', image: asset('/media/composites/composite-02.jpg'), format: 'landscape' },
   { no: '03', title: '深蓝幻境', image: asset('/media/composites/composite-03.jpg'), format: 'landscape' },
   { no: '04', title: '危城红影', image: asset('/media/composites/composite-04.jpg'), format: 'landscape' },
   { no: '05', title: '冰幕红影', image: asset('/media/composites/composite-05.jpg'), format: 'landscape' },
   { no: '06', title: '樱影御前', image: asset('/media/composites/composite-06.jpg'), format: 'portrait' },
+  { no: '07', title: '\u673a\u68b0\u5154\u8231', image: asset('/media/composites/composite-07.jpg'), format: 'landscape' },
+  { no: '08', title: '\u7eef\u9636\u5bc6\u51fd', image: asset('/media/composites/composite-08.jpg'), format: 'landscape' },
+  { no: '09', title: '\u6c99\u6d77\u795e\u6bbf', image: asset('/media/composites/composite-09.jpg'), format: 'landscape' },
 ]
 
 export const fieldNotes = [

@@ -17,3 +17,6 @@ footer{padding-top:88px!important;padding-bottom:32px!important;border-top:1px s
 .post-cinema .landscape img{aspect-ratio:3/2}.post-cinema figure:first-child img{aspect-ratio:2400/1499}.post-cinema .portrait img{aspect-ratio:2/3}
 .about-layout img{aspect-ratio:3/4}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+
+/* Extended galleries: keep new landscape and portrait work balanced on wide screens. */
+@media(min-width:701px){.selected-cinema figure:nth-child(8),.selected-cinema figure:nth-child(10){margin-top:90px}.post-cinema figure:nth-child(7){grid-column:span 5}.post-cinema figure:nth-child(8){grid-column:span 7;margin-top:90px}.post-cinema figure:nth-child(9){grid-column:2/span 10}}
