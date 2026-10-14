@@ -1,20 +1,24 @@
-import { chromium } from 'playwright'
+import { chromium } from 'playwright-core'
 
 const widths = [320, 375, 390, 430]
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({
+  headless: true,
+  executablePath: process.env.BROWSER_BIN,
+  args: ['--no-sandbox']
+})
 const failures = []
 
 for (const width of widths) {
   const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 })
-  await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' })
-  await page.evaluate(async () => {
-    await Promise.all([...document.images].map((img) => img.complete
-      ? img.decode().catch(() => {})
-      : new Promise((resolve) => {
-          img.addEventListener('load', resolve, { once: true })
-          img.addEventListener('error', resolve, { once: true })
-        })))
+  await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    document.querySelectorAll('img').forEach((img) => { img.loading = 'eager' })
+    window.scrollTo(0, document.body.scrollHeight)
   })
+  await page.waitForFunction(() => [...document.images].every((img) => img.complete), null, { timeout: 30000 })
+  await page.waitForTimeout(300)
+  await page.evaluate(() => window.scrollTo(0, 0))
+
   const result = await page.evaluate((viewportWidth) => {
     const rect = (element) => element.getBoundingClientRect()
     const images = [...document.images]

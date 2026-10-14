@@ -32,14 +32,13 @@ jobs:
           jpegoptim --strip-all --all-progressive --max=88 dist/media/composites/composite-{10,11,12,13}.jpg
       - name: Verify mobile layouts
         run: |
-          npm install --no-save --package-lock=false playwright@1.56.1
-          npx playwright install --with-deps chromium
+          npm install --no-save --package-lock=false playwright-core@1.56.1
           npm run preview -- --port 4173 > /tmp/portfolio-preview.log 2>&1 &
           for i in {1..30}; do
             curl -fsS http://127.0.0.1:4173/ >/dev/null && break
             sleep 1
           done
-          node scripts/verify-mobile.mjs
+          BROWSER_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)" node scripts/verify-mobile.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
