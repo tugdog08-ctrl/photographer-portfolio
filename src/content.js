@@ -1,7 +1,7 @@
 // 内容与素材替换入口：把链接改成你的本地文件（建议放在 public/media/）或线上地址即可。
 // Version the photos so mobile browsers do not reuse an earlier cached 404
 // from the short window while GitHub Pages was still publishing the assets.
-const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20260930-1`
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}?v=20261014-1`
 
 export const profile = {
   name: 'RIN',
@@ -44,6 +44,10 @@ export const composites = [
   { no: '07', title: '\u673a\u68b0\u5154\u8231', image: asset('/media/composites/composite-07.jpg'), format: 'landscape' },
   { no: '08', title: '\u7eef\u9636\u5bc6\u51fd', image: asset('/media/composites/composite-08.jpg'), format: 'landscape' },
   { no: '09', title: '\u6c99\u6d77\u795e\u6bbf', image: asset('/media/composites/composite-09.jpg'), format: 'landscape' },
+  { no: '10', title: '紫链幽境', image: asset('/media/composites/composite-10.jpg'), format: 'landscape' },
+  { no: '11', title: '夕照伞影', image: asset('/media/composites/composite-11.jpg'), format: 'landscape' },
+  { no: '12', title: '黑金潮汐', image: asset('/media/composites/composite-12.jpg'), format: 'landscape' },
+  { no: '13', title: '绯幕蔷薇', image: asset('/media/composites/composite-13.jpg'), format: 'landscape' },
 ]
 
 export const fieldNotes = [

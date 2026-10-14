@@ -20,3 +20,10 @@ footer{padding-top:88px!important;padding-bottom:32px!important;border-top:1px s
 
 /* Extended galleries: keep new landscape and portrait work balanced on wide screens. */
 @media(min-width:701px){.selected-cinema figure:nth-child(8),.selected-cinema figure:nth-child(10){margin-top:90px}.post-cinema figure:nth-child(7){grid-column:span 5}.post-cinema figure:nth-child(8){grid-column:span 7;margin-top:90px}.post-cinema figure:nth-child(9){grid-column:2/span 10}}
+
+/* Preserve the source proportions of the 2026-10 composite additions. */
+.post-cinema figure:nth-child(10) img{aspect-ratio:6720/4480}
+.post-cinema figure:nth-child(11) img{aspect-ratio:3786/2130}
+.post-cinema figure:nth-child(12) img{aspect-ratio:4096/2726}
+.post-cinema figure:nth-child(13) img{aspect-ratio:5825/3796}
+@media(min-width:701px){.post-cinema figure:nth-child(10){grid-column:span 7}.post-cinema figure:nth-child(11){grid-column:span 5;margin-top:90px}.post-cinema figure:nth-child(12){grid-column:span 5}.post-cinema figure:nth-child(13){grid-column:span 7;margin-top:90px}}
