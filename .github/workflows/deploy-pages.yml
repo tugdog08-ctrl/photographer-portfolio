@@ -54,3 +54,29 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Verify xiaotugou.top and new composite images
+        run: |
+          urls=(
+            "https://xiaotugou.top/"
+            "https://xiaotugou.top/media/composites/composite-10.jpg?v=20261014-1"
+            "https://xiaotugou.top/media/composites/composite-11.jpg?v=20261014-1"
+            "https://xiaotugou.top/media/composites/composite-12.jpg?v=20261014-1"
+            "https://xiaotugou.top/media/composites/composite-13.jpg?v=20261014-1"
+          )
+          for url in "${urls[@]}"; do
+            available=0
+            for attempt in {1..18}; do
+              if curl -fsS --max-time 30 -o /dev/null "$url"; then
+                available=1
+                break
+              fi
+              sleep 10
+            done
+            test "$available" -eq 1
+            echo "Verified $url"
+          done
